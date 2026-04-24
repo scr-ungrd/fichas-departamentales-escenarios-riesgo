@@ -1,0 +1,896 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+
+/* ============================================================
+   UNGRD · Portal de Fichas Departamentales de Riesgo
+   Paleta: Azul #232A60 | Naranja #E54D23 | Amarillo #FFD101
+   Tipografía: Lato (títulos) + Roboto (cuerpo)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+/* ---------- Variables — modo claro ---------- */
+:root {
+  --ungrd-blue:        #232A60;
+  --ungrd-blue-dark:   #1A2050;
+  --ungrd-blue-mid:    #2D3580;
+  --ungrd-blue-light:  #E8ECFF;
+  --ungrd-orange:      #E54D23;
+  --ungrd-orange-dk:   #BF3D1A;
+  --ungrd-yellow:      #FFD101;
+  --ungrd-yellow-dk:   #E0B800;
+  --ungrd-text:        #1C1C2E;
+  --ungrd-muted:       #5C5C7A;
+  --card-bg:           #FFFFFF;
+  --card-border:       rgba(35, 42, 96, 0.10);
+  --card-radius:       10px;
+  --card-shadow:       0 2px 14px rgba(35, 42, 96, 0.09);
+  --card-shadow-hover: 0 10px 32px rgba(35, 42, 96, 0.20);
+  --section-bg-alt:    #F3F4FB;
+  --transition:        0.22s ease;
+}
+
+/* ---------- Variables — modo oscuro ---------- */
+[data-bs-theme="dark"],
+body.quarto-dark {
+  --ungrd-blue:        #4A54A0;
+  --ungrd-blue-dark:   #111530;
+  --ungrd-blue-light:  #1A1F40;
+  --ungrd-orange:      #FF6B40;
+  --ungrd-yellow:      #FFD101;
+  --ungrd-text:        #E8E8F2;
+  --ungrd-muted:       #8888A8;
+  --card-bg:           #1C1C2E;
+  --card-border:       rgba(255, 255, 255, 0.07);
+  --card-shadow:       0 2px 16px rgba(0, 0, 0, 0.40);
+  --card-shadow-hover: 0 10px 36px rgba(0, 0, 0, 0.60);
+  --section-bg-alt:    #14141E;
+}
+
+/* ---------- Base ---------- */
+html, body { overflow-x: hidden !important; width: 100%; }
+
+body {
+  font-family: 'Roboto', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--ungrd-text);
+  transition: background-color 0.30s ease, color 0.30s ease;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Layout global (overrides Quarto) ---------- */
+#quarto-content,
+#quarto-document-content,
+.quarto-container.page-full,
+main.content {
+  padding-left:  0 !important;
+  padding-right: 0 !important;
+  max-width:     none !important;
+  overflow-x:    hidden !important;
+}
+
+#title-block-header { display: none !important; }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  background-color: var(--ungrd-blue-dark) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.30);
+  padding: 0.5rem 1.5rem;
+}
+
+[data-bs-theme="dark"] .navbar,
+body.quarto-dark .navbar {
+  background-color: #0B0E1E !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.navbar-brand img { height: 44px; width: auto; }
+
+.navbar .nav-link {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.88) !important;
+  padding: 0.35rem 0.9rem !important;
+  border-radius: 4px;
+  transition: color var(--transition);
+  background: transparent !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: var(--ungrd-yellow) !important;
+  background: transparent !important;
+}
+
+.navbar .nav-link .bi-house-fill {
+  color: rgba(255, 255, 255, 0.88) !important;
+  font-size: 1.1rem;
+  vertical-align: -0.1em;
+  transition: color var(--transition);
+}
+
+.navbar .nav-link:hover .bi-house-fill {
+  color: var(--ungrd-yellow) !important;
+}
+
+/* Ocultar texto "Portal de..." junto al icono de casa */
+.navbar .nav-link:has(.bi-house-fill) .menu-text {
+  display: none !important;
+}
+
+/* ---------- Toggle Sol / Luna ---------- */
+.quarto-color-scheme-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  cursor: pointer !important;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition) !important;
+  margin-left: 6px !important;
+}
+
+.quarto-color-scheme-toggle:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: var(--ungrd-yellow) !important;
+  transform: rotate(20deg) scale(1.08) !important;
+}
+
+/* Modo claro (sin .alternate) → luna blanca */
+.quarto-color-scheme-toggle:not(.alternate) .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(255,255,255,0.9)" viewBox="0 0 16 16"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/></svg>') !important;
+}
+
+/* Modo oscuro (.alternate activo) → sol dorado */
+.quarto-color-scheme-toggle.alternate .bi::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgba(255,209,1,1)" viewBox="0 0 16 16"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707z"/></svg>') !important;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-portal {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left:  calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  min-height: 80vh;
+  background: linear-gradient(135deg, #101435 0%, #1A2050 38%, #232A60 72%, #2D3580 100%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 8%;
+  color: white;
+  position: relative;
+  box-sizing: border-box;
+  gap: 48px;
+}
+
+.hero-portal::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('images/hero-pattern.png') center / cover no-repeat;
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.hero-portal__left {
+  position: relative;
+  z-index: 2;
+  max-width: 52%;
+}
+
+.hero-portal__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(229, 77, 35, 0.14);
+  color: #FF8A65;
+  border: 1px solid rgba(229, 77, 35, 0.30);
+  border-radius: 4px;
+  padding: 5px 14px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.71rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.hero-portal__title {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.12;
+  margin-bottom: 20px;
+}
+
+.hero-portal__title em {
+  font-style: normal;
+  color: var(--ungrd-yellow);
+}
+
+.hero-portal__description {
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(0.94rem, 1.4vw, 1.07rem);
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.76;
+  margin-bottom: 36px;
+  max-width: 540px;
+}
+
+.hero-portal__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ungrd-orange);
+  color: #FFFFFF !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 0.94rem;
+  text-decoration: none !important;
+  padding: 13px 30px;
+  border-radius: 6px;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 18px rgba(229, 77, 35, 0.38);
+}
+
+.hero-portal__cta:hover {
+  background: var(--ungrd-orange-dk);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(229, 77, 35, 0.50);
+}
+
+/* --- Stats panel del Hero --- */
+.hero-portal__right {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.hero-stats-panel {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 26px;
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.30);
+}
+
+.hero-stat {
+  text-align: center;
+  padding: 20px 10px;
+  background: rgba(8, 12, 45, 0.45);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: transform var(--transition);
+}
+
+.hero-stat:hover { transform: translateY(-4px); }
+
+.hero-stat__number {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--ungrd-yellow);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.hero-stat__label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.73rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.70);
+}
+
+/* ============================================================
+   SECCIONES — Comunes
+   ============================================================ */
+.section-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 32px;
+}
+
+.section-header { margin-bottom: 42px; }
+
+.section-label {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ungrd-orange);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: 'Lato', sans-serif;
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 900;
+  margin: 0 0 10px;
+  line-height: 1.2;
+  color: var(--ungrd-text);
+}
+
+.section-subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.97rem;
+  color: var(--ungrd-muted);
+  margin: 0;
+}
+
+.section-divider {
+  width: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ungrd-orange), var(--ungrd-yellow));
+  border-radius: 2px;
+  margin-top: 16px;
+}
+
+.section-alt {
+  background: var(--section-bg-alt);
+}
+
+/* ============================================================
+   SHOWCASE — Fichas con Avance (portadas grandes)
+   ============================================================ */
+.showcase-section {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left:  calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 72px 8%;
+  box-sizing: border-box;
+  background: var(--ungrd-blue-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url('images/hero-pattern.png') center / cover no-repeat;
+  opacity: 0.025;
+  pointer-events: none;
+}
+
+.showcase-section .section-label { color: #FF8A65; }
+.showcase-section .section-title { color: #FFFFFF; }
+.showcase-section .section-subtitle { color: rgba(255,255,255,0.60); }
+.showcase-section .section-divider {
+  background: linear-gradient(90deg, #FF8A65, var(--ungrd-yellow));
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 36px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- Portada Card ---------- */
+.portada-card {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4.1;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.30s ease, box-shadow 0.30s ease;
+  text-decoration: none !important;
+  display: block;
+}
+
+.portada-card:hover {
+  transform: translateY(-8px) scale(1.015);
+}
+
+.portada-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 0.40s ease;
+}
+
+.portada-card:hover .portada-card__img {
+  transform: scale(1.04);
+}
+
+.portada-card__overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 10, 30, 0.96) 0%,
+    rgba(8, 10, 30, 0.72) 45%,
+    transparent 100%
+  );
+  padding: 32px 20px 20px;
+  color: white;
+}
+
+.portada-card__region {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.portada-card__name {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.portada-card__badge {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.63rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.portada-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 0.83rem;
+  padding: 9px 18px;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: background var(--transition), transform var(--transition);
+}
+
+/* --- ACTIVO (Córdoba) --- */
+.portada-card--active {
+  box-shadow: 0 0 0 2.5px var(--ungrd-orange),
+              0 14px 48px rgba(229, 77, 35, 0.38);
+}
+
+.portada-card--active:hover {
+  box-shadow: 0 0 0 2.5px var(--ungrd-orange),
+              0 20px 60px rgba(229, 77, 35, 0.50);
+}
+
+.portada-card--active .portada-card__badge {
+  background: rgba(229, 77, 35, 0.88);
+  color: #FFFFFF;
+  border: none;
+}
+
+.portada-card--active .portada-card__btn {
+  background: var(--ungrd-orange);
+  color: #FFFFFF !important;
+}
+
+.portada-card--active .portada-card__btn:hover {
+  background: var(--ungrd-orange-dk);
+  transform: translateX(3px);
+}
+
+/* --- BORRADOR (Antioquia, Cundinamarca) --- */
+.portada-card--draft .portada-card__img {
+  filter: saturate(25%) brightness(0.78);
+}
+
+.portada-card--draft {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  cursor: default;
+}
+
+.portada-card--draft:hover {
+  transform: translateY(-3px) scale(1.005);
+}
+
+.portada-card--draft:hover .portada-card__img {
+  transform: scale(1.01);
+  filter: saturate(35%) brightness(0.82);
+}
+
+.portada-card--draft .portada-card__badge {
+  background: rgba(255, 209, 1, 0.20);
+  color: var(--ungrd-yellow);
+  border: 1px solid rgba(255, 209, 1, 0.38);
+}
+
+.portada-card--draft .portada-card__btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   METODOLOGÍA
+   ============================================================ */
+.metodologia-intro {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.04rem;
+  line-height: 1.82;
+  color: var(--ungrd-text);
+  max-width: 860px;
+}
+
+.metodologia-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 36px;
+}
+
+.step-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-top: 3px solid var(--ungrd-orange);
+  border-radius: var(--card-radius);
+  padding: 24px 20px;
+  box-shadow: var(--card-shadow);
+}
+
+.step-card__number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px; height: 34px;
+  background: var(--ungrd-blue-light);
+  color: var(--ungrd-blue-dark);
+  border-radius: 50%;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+[data-bs-theme="dark"] .step-card__number,
+body.quarto-dark .step-card__number {
+  background: rgba(74, 84, 160, 0.30);
+  color: #A0AAFF;
+}
+
+.step-card__title {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--ungrd-text);
+}
+
+.step-card__text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.86rem;
+  color: var(--ungrd-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ============================================================
+   GRILLA DE DEPARTAMENTOS
+   ============================================================ */
+.region-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.region-header__dot {
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.region-header__title {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--ungrd-text);
+}
+
+.region-header__count {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.76rem;
+  color: var(--ungrd-muted);
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 52px;
+}
+
+/* ---------- Dept Card — base ---------- */
+.dept-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+}
+
+/* --- Portada completa en cards de la grilla --- */
+.dept-card__cover {
+  width: 100%;
+  overflow: hidden;
+  background: var(--section-bg-alt);
+  flex-shrink: 0;
+}
+
+.dept-card__cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.dept-card:hover .dept-card__cover img {
+  transform: scale(1.05);
+}
+
+.dept-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 12px 14px 0;
+}
+
+.dept-card__region {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ungrd-muted);
+}
+
+.dept-card__badge {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.60rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dept-card__body {
+  padding: 10px 14px 6px;
+  flex: 1;
+}
+
+.dept-card__name {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 700;
+  margin: 0 0 5px;
+  line-height: 1.25;
+  color: var(--ungrd-text);
+}
+
+.dept-card__desc {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.78rem;
+  color: var(--ungrd-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.dept-card__footer {
+  padding: 8px 14px 12px;
+}
+
+/* ---------- ACTIVO ---------- */
+.dept-card--active {
+  border-left: 3px solid var(--ungrd-orange);
+}
+
+.dept-card--active::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--ungrd-orange), var(--ungrd-yellow));
+}
+
+.dept-card--active:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.dept-card--active .dept-card__badge {
+  background: rgba(229, 77, 35, 0.10);
+  color: var(--ungrd-orange);
+  border: 1px solid rgba(229, 77, 35, 0.25);
+}
+
+.btn-dept-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--ungrd-blue-dark);
+  color: #FFFFFF !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 0.80rem;
+  text-decoration: none !important;
+  padding: 8px 14px;
+  border-radius: 5px;
+  transition: background var(--transition), transform var(--transition);
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-dept-active:hover {
+  background: var(--ungrd-orange);
+  transform: translateX(2px);
+}
+
+/* ---------- BORRADOR ---------- */
+.dept-card--draft {
+  filter: grayscale(65%);
+  border-left: 3px solid #8890C0;
+  opacity: 0.80;
+}
+
+.dept-card--draft .dept-card__badge {
+  background: rgba(255, 209, 1, 0.11);
+  color: #876E00;
+  border: 1px solid rgba(255, 209, 1, 0.28);
+}
+
+[data-bs-theme="dark"] .dept-card--draft .dept-card__badge,
+body.quarto-dark .dept-card--draft .dept-card__badge {
+  color: #FFD101;
+  background: rgba(255, 209, 1, 0.14);
+}
+
+.btn-dept-disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  color: var(--ungrd-muted) !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 0.80rem;
+  padding: 7px 14px;
+  border-radius: 5px;
+  border: 1px dashed var(--card-border);
+  width: 100%;
+  cursor: not-allowed;
+}
+
+/* ---------- PRÓXIMAMENTE ---------- */
+.dept-card--soon {
+  filter: grayscale(100%);
+  opacity: 0.52;
+}
+
+[data-bs-theme="dark"] .dept-card--soon,
+body.quarto-dark .dept-card--soon { opacity: 0.38; }
+
+.dept-card--soon .dept-card__badge {
+  background: rgba(100, 100, 130, 0.10);
+  color: var(--ungrd-muted);
+  border: 1px solid rgba(100, 100, 130, 0.18);
+}
+
+.btn-dept-soon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: transparent;
+  color: var(--ungrd-muted) !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 0.78rem;
+  padding: 7px 14px;
+  border-radius: 5px;
+  border: 1px solid var(--card-border);
+  width: 100%;
+  cursor: default;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.nav-footer {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.82rem;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .dept-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 992px) {
+  .hero-portal {
+    flex-direction: column;
+    padding: 100px 6% 60px;
+    text-align: center;
+    min-height: unset;
+  }
+  .hero-portal__left  { max-width: 100%; }
+  .hero-portal__right { max-width: 480px; }
+  .hero-portal__description { margin-left: auto; margin-right: auto; }
+  .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+  .showcase-grid .portada-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+  .dept-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .showcase-grid { grid-template-columns: 1fr; }
+  .showcase-grid .portada-card:last-child { grid-column: auto; max-width: none; }
+  .dept-grid { grid-template-columns: 1fr; }
+  .section-wrapper { padding: 48px 16px; }
+  .showcase-section { padding: 52px 5%; }
+  .hero-stats-panel { grid-template-columns: repeat(2, 1fr); }
+}
