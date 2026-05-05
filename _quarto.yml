@@ -21,10 +21,8 @@ website:
       - icon: house-fill
         href: index.qmd
         aria-label: Inicio
-      - text: "Fichas disponibles"
-        href: "#fichas-avance"
-      - text: "Metodología"
-        href: "#metodologia"
+      - text: "Departamentos"
+        href: "#departamentos"
 
   page-footer:
     background: "#1A2050"
