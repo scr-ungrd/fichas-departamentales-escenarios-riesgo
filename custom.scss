@@ -57,6 +57,7 @@ body {
   line-height: 1.72;
   color: var(--ungrd-text);
   transition: background-color 0.30s ease, color 0.30s ease;
+  padding-top: 70px; /* Compensa el navbar fijo */
 }
 
 
@@ -83,6 +84,11 @@ main.content {
    NAVBAR
    ============================================================ */
 .navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
   background-color: var(--ungrd-blue-dark) !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.30);
   padding: 0.5rem 1.5rem;
@@ -101,10 +107,24 @@ body.quarto-dark .navbar {
   font-weight: 500;
   font-size: 0.88rem;
   color: rgba(255, 255, 255, 0.88) !important;
-  padding: 0.35rem 0.9rem !important;
-  border-radius: 4px;
-  transition: color var(--transition);
+  padding: 0.4rem 1.1rem !important;
+  border-radius: 0;
+  transition: color 0.3s ease;
   background: transparent !important;
+  position: relative;
+}
+
+.navbar .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.1rem;
+  right: 1.1rem;
+  height: 2px;
+  background-color: var(--ungrd-yellow);
+  transform: scaleX(0);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform-origin: right;
 }
 
 .navbar .nav-link:hover,
@@ -113,20 +133,41 @@ body.quarto-dark .navbar {
   background: transparent !important;
 }
 
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Ocultar texto "Portal de..." junto al icono de casa */
+.navbar .nav-link:has(.bi-house-fill) .menu-text {
+  display: none !important;
+}
+
+/* Evitar subrayado en el icono de inicio */
+.navbar .nav-link:has(.bi-house-fill)::after {
+  display: none !important;
+}
+
 .navbar .nav-link .bi-house-fill {
-  color: rgba(255, 255, 255, 0.88) !important;
+  color: #FFFFFF !important;
+  transition: color 0.3s ease;
   font-size: 1.1rem;
-  vertical-align: -0.1em;
-  transition: color var(--transition);
 }
 
 .navbar .nav-link:hover .bi-house-fill {
   color: var(--ungrd-yellow) !important;
 }
 
-/* Ocultar texto "Portal de..." junto al icono de casa */
-.navbar .nav-link:has(.bi-house-fill) .menu-text {
-  display: none !important;
+/* Navbar Toggler en Amarillo */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+.navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+.navbar-toggler-icon {
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg) !important; /* Aproximación a amarillo */
 }
 
 /* ---------- Toggle Sol / Luna ---------- */
