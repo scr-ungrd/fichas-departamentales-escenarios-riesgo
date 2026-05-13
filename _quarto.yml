@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Portal de Fichas Departamentales | UNGRD"
-  site-url: https://fichas-riesgo.ungrd.gov.co   # Actualizar con URL definitiva en producción
+  site-url: https://scr-ungrd.github.io/fichas-departamentales-escenarios-riesgo
   favicon: images/favicon.png
   open-graph:
     title: "Portal de Fichas Departamentales de Riesgo · UNGRD"
