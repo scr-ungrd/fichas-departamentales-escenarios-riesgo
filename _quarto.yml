@@ -3,11 +3,11 @@ project:
   output-dir: _site
 
 website:
-  title: "Portal de Fichas Departamentales | UNGRD"
+  title: "Fichas Departamentales | SCR-UNGRD"
   site-url: https://scr-ungrd.github.io/fichas-departamentales-escenarios-riesgo
   favicon: images/favicon.png
   open-graph:
-    title: "Portal de Fichas Departamentales de Riesgo · UNGRD"
+    title: "Fichas Departamentales de Riesgo · UNGRD"
     description: >
       Fichas de caracterización de escenarios de riesgo para los 32 departamentos
       de Colombia. Herramienta técnica de la UNGRD para la planificación territorial.
@@ -15,20 +15,36 @@ website:
   navbar:
     logo: images/logo-ungrd.png
     logo-alt: "Logo UNGRD"
-    background: "#232A60"
-    foreground: white
+    background: light
+    foreground: dark
+    pinned: true
     right:
       - icon: house-fill
         href: index.qmd
         aria-label: Inicio
       - text: "Departamentos"
         href: "#departamentos"
+      - icon: diagram-3-fill
+        href: "https://scr-ungrd.github.io/hub/"
+        aria-label: "HUB SCR — portal de proyectos"
+        target: _blank
+        rel: noopener noreferrer
+      - icon: github
+        href: https://github.com/scr-ungrd/fichas-departamentales-escenarios-riesgo
+        aria-label: "Repositorio en GitHub"
+        target: _blank
+        rel: noopener noreferrer
+      - icon: translate
+        href: "https://translate.google.com/translate?sl=es&tl=en&u=https://scr-ungrd.github.io/fichas-departamentales-escenarios-riesgo/"
+        aria-label: "Translate to English"
+        target: _blank
+        rel: noopener noreferrer
 
   page-footer:
     background: "#1A2050"
     foreground: white
     left: "© 2026 UNGRD — Unidad Nacional para la Gestión del Riesgo de Desastres"
-    center: "Subdirección de Conocimiento del Riesgo"
+    center: "Subdirección para el Conocimiento del Riesgo"
 
 format:
   html:
