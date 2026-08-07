@@ -19,16 +19,13 @@ website:
     foreground: dark
     pinned: true
     right:
-      - icon: house-fill
-        href: index.qmd
-        aria-label: Inicio
-      - text: "Departamentos"
-        href: "#departamentos"
       - icon: diagram-3-fill
         href: "https://scr-ungrd.github.io/hub/"
         aria-label: "HUB SCR — portal de proyectos"
         target: _blank
         rel: noopener noreferrer
+      - text: "Departamentos"
+        href: "#departamentos"
       - icon: github
         href: https://github.com/scr-ungrd/fichas-departamentales-escenarios-riesgo
         aria-label: "Repositorio en GitHub"
