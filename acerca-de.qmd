@@ -1,0 +1,34 @@
+---
+title: "Acerca de"
+subtitle: "Qué son las fichas, quién las publica y cómo está construido el portal"
+page-layout: article
+body-classes: scr-about
+---
+
+## Qué son las fichas
+
+Las **Fichas Departamentales de Caracterización de Escenarios de Riesgo** son documentos técnicos de la Subdirección para el Conocimiento del Riesgo (SCR) de la UNGRD que sintetizan los principales escenarios de riesgo de cada departamento de Colombia. Integran información sobre amenazas naturales y socionaturales, elementos expuestos, condiciones de vulnerabilidad y capacidades institucionales para la gestión del riesgo.
+
+## Quién las publica
+
+Las fichas y este portal están a cargo de la **Subdirección para el Conocimiento del Riesgo (SCR)** de la UNGRD.
+
+## Estado del portal
+
+El portal está pensado para los 32 departamentos de Colombia. Hoy está disponible la ficha de Córdoba.
+
+## Licencias
+
+- Código fuente del sitio: MIT.
+
+## Tecnología
+
+El sitio se construye con [Quarto](https://quarto.org) y se publica en GitHub Pages. El código fuente está en [GitHub](https://github.com/scr-ungrd/fichas-departamentales-escenarios-riesgo).
+
+## Equipo
+
+**Líder del proyecto**
+: **Mauricio Romero Torres** · ORCID: [0000-0003-3282-0372](https://orcid.org/0000-0003-3282-0372) · GitHub: [mromerot](https://github.com/mromerot) · Contrato de prestación de servicios n.º 9677-PPAL001-1552-2025
+
+**Equipo técnico**
+: **Estefanía Pachón** · GitHub: [Ing-Estefania-Pachon](https://github.com/Ing-Estefania-Pachon) · Contrato de prestación de servicios n.º 9677-PPAL001-201-2026
